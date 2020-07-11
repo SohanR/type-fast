@@ -9,10 +9,49 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
     integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
   <link rel="stylesheet" href="src/style/style.css" />
-  <title>Title</title>
+  <title>Type Fast</title>
 </head>
 
 <body>
+
+  <button id="settings-btn" class="settings-btn">
+    <i class="fas fa-cog"></i>
+  </button>
+
+  <div class="settings" id="settings">
+    <form id="settings-form">
+      <div>
+        <label for="difficulty">Difficulty</label>
+        <select id="difficulty">
+          <option value="easy">easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </div>
+    </form>
+  </div>
+
+  <div class="container">
+    <h2>
+      Type Fast
+    </h2>
+    <small>Type following:</small>
+
+    <h1 id="word"></h1>
+
+    <input type="text" id="text" autocomplete="off" placeholder="Type the word here...">
+
+    <p class="time-container">
+      Time Left: <span id="time"></span>
+    </p>
+
+    <p class="score-container">
+      Score: <span id="score"></span>
+    </p>
+
+    <div id="end-game-container" class="end-game-container">
+    </div>
+  </div>
 
   <script src="dist/bundle.js"></script>
 </body>
