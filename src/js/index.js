@@ -6,7 +6,7 @@ const endgameEl = document.getElementById('end-game-container')
 const settingBtn = document.getElementById('settings-btn')
 const settings = document.getElementById('settings')
 const settingsForm = document.getElementById('settings-form')
-const difficulty = document.getElementById('difficulty')
+const difficultySelect = document.getElementById('difficulty')
 
 
 // word list
@@ -39,6 +39,10 @@ scoreEl.innerHTML = score;
 
 let time = 10;
 timeEl.innerHTML = time + 's';
+
+let difficulty = localStorage.getItem('difficulty') !== null ? localStorage.getItem('difficulty') : 'medium';
+
+difficultySelect.value = difficulty;
 
 text.focus();
 
@@ -73,7 +77,7 @@ function updateTime() {
 function gameOver() {
     endgameEl.innerHTML = `
         <h1>Time Ran Out</h1>
-        <p>You Final Score is ${score}</p>
+        <p>You Final Score is ${score} at ${difficulty} Level!</p>
         <button onclick="location.reload()">Reload</button>
     `;
 
@@ -91,10 +95,26 @@ text.addEventListener('input', e => {
         updateScore();
         e.target.value = '';
 
-        time += 3;
+        if (difficulty === 'hard') {
+            time += 2;
+        } else if (difficulty === 'medium') {
+            time += 3;
+        } else {
+            time += 5;
+        }
 
         updateTime();
     }
+})
+
+
+settingBtn.addEventListener('click', () => {
+    settings.classList.toggle('hide')
+})
+
+settingsForm.addEventListener('change', e => {
+    difficulty = e.target.value;
+    localStorage.setItem('difficulty', difficulty);
 })
 
 
